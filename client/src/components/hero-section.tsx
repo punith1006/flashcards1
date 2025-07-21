@@ -1,0 +1,158 @@
+import { motion } from "framer-motion";
+import { Play, Download } from "lucide-react";
+import { useScrollTo } from "@/hooks/use-scroll-to";
+
+export default function HeroSection() {
+  const scrollTo = useScrollTo();
+
+  return (
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <div className="absolute inset-0 grid-pattern"></div>
+      <div className="absolute inset-0 gradient-overlay"></div>
+      
+      {/* Floating Elements */}
+      <motion.div 
+        className="absolute top-20 left-10 w-16 h-16 bg-[var(--gk-green)]/20 rounded-full"
+        animate={{ y: [0, -20, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div 
+        className="absolute top-40 right-20 w-12 h-12 bg-[var(--gk-orange)]/20 rounded-full"
+        animate={{ y: [0, -20, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+      />
+      <motion.div 
+        className="absolute bottom-40 left-1/4 w-8 h-8 bg-[var(--gk-blue)]/20 rounded-full"
+        animate={{ y: [0, -20, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 4 }}
+      />
+      
+      <div className="container mx-auto px-6 lg:px-8 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="text-center lg:text-left space-y-8">
+            <motion.div 
+              className="space-y-4"
+              initial={{ y: 100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <h1 className="text-4xl lg:text-6xl font-bold text-slate-800 leading-tight">
+                Master <span className="text-[var(--gk-blue)]">AI</span><br/>
+                <span className="text-[var(--gk-green)]">The Leitner Way</span>
+              </h1>
+              <p className="text-xl text-slate-600 max-w-2xl">
+                Revolutionary flashcard learning system designed to accelerate your artificial intelligence mastery through scientifically-proven spaced repetition techniques.
+              </p>
+            </motion.div>
+            
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <button 
+                onClick={() => scrollTo("products")}
+                className="px-8 py-4 bg-[var(--gk-blue)] text-white rounded-xl font-semibold hover:bg-blue-700 transform hover:scale-105 transition-all duration-300 shadow-lg flex items-center justify-center gap-2"
+              >
+                <Play className="w-4 h-4" />
+                Explore Products
+              </button>
+              <button className="px-8 py-4 border border-[var(--gk-blue)] text-[var(--gk-blue)] rounded-xl font-semibold hover:bg-[var(--gk-blue)] hover:text-white transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2">
+                <Download className="w-4 h-4" />
+                Learn More
+              </button>
+            </motion.div>
+            
+            <motion.div 
+              className="flex items-center gap-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              <div className="text-center">
+                <div className="text-2xl font-bold text-[var(--gk-blue)]">500+</div>
+                <div className="text-sm text-slate-600">AI Concepts</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-[var(--gk-green)]">12</div>
+                <div className="text-sm text-slate-600">Subject Areas</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-[var(--gk-orange)]">98%</div>
+                <div className="text-sm text-slate-600">Success Rate</div>
+              </div>
+            </motion.div>
+          </div>
+          
+          <motion.div 
+            className="relative"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.9 }}
+          >
+            <div className="relative">
+              <div className="w-full max-w-lg mx-auto relative">
+                <motion.div 
+                  className="bg-gradient-to-br from-[var(--gk-blue)] to-[var(--gk-cyan)] rounded-3xl p-8 shadow-2xl"
+                  initial={{ rotate: 3 }}
+                  whileHover={{ rotate: 0 }}
+                  transition={{ duration: 0.7 }}
+                >
+                  <div className="bg-white rounded-2xl p-6 space-y-4 grid-pattern">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 bg-[var(--gk-green)] rounded-lg flex items-center justify-center">
+                        <span className="text-white text-sm">🧠</span>
+                      </div>
+                      <h3 className="font-semibold text-slate-800">Intelligence</h3>
+                    </div>
+                    <p className="text-sm text-slate-600 leading-relaxed">
+                      Artificial Intelligence (AI) is when computers can think and learn like humans. They can solve problems, learn new things, and make decisions.
+                    </p>
+                    <div className="flex justify-between items-center pt-2">
+                      <span className="text-xs text-[var(--gk-green)] font-medium">Card 01</span>
+                      <div className="flex gap-1">
+                        <div className="w-2 h-2 bg-[var(--gk-green)] rounded-full"></div>
+                        <div className="w-2 h-2 bg-slate-200 rounded-full"></div>
+                        <div className="w-2 h-2 bg-slate-200 rounded-full"></div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+                
+                {/* Floating cards */}
+                <motion.div 
+                  className="absolute -top-4 -right-4 w-20 h-28 bg-white rounded-xl shadow-lg grid-pattern p-2"
+                  initial={{ rotate: 12 }}
+                  animate={{ y: [0, -20, 0] }}
+                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <div className="w-4 h-4 bg-[var(--gk-orange)] rounded-full mb-2"></div>
+                  <div className="space-y-1">
+                    <div className="h-1 bg-slate-200 rounded"></div>
+                    <div className="h-1 bg-slate-200 rounded w-3/4"></div>
+                    <div className="h-1 bg-slate-200 rounded w-1/2"></div>
+                  </div>
+                </motion.div>
+                
+                <motion.div 
+                  className="absolute -bottom-2 -left-6 w-16 h-24 bg-white rounded-xl shadow-lg grid-pattern p-2"
+                  initial={{ rotate: -12 }}
+                  animate={{ y: [0, -20, 0] }}
+                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+                >
+                  <div className="w-3 h-3 bg-[var(--gk-brown)] rounded-full mb-2"></div>
+                  <div className="space-y-1">
+                    <div className="h-1 bg-slate-200 rounded"></div>
+                    <div className="h-1 bg-slate-200 rounded w-2/3"></div>
+                    <div className="h-1 bg-slate-200 rounded w-1/3"></div>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
