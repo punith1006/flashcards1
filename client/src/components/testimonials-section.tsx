@@ -3,27 +3,27 @@ import { Star } from "lucide-react";
 
 const testimonials = [
   {
-    name: "Sarah Johnson",
-    role: "ML Engineer",
-    avatar: "SJ",
+    name: "Priya Sharma",
+    role: "Engineering Student, IIIT Delhi",
+    avatar: "PS",
     rating: 5,
-    text: "The Leitner method combined with these AI flashcards completely transformed my learning. I mastered complex concepts in weeks, not months.",
+    text: "The bilingual cards helped me understand complex engineering concepts easily. The regional language explanations made all the difference for a student from rural Haryana.",
     color: "bg-[var(--gk-blue)]",
   },
   {
-    name: "Marcus Chen",
-    role: "Data Scientist",
-    avatar: "MC",
+    name: "Arjun Patel",
+    role: "Medical Student, Government College",
+    avatar: "AP",
     rating: 5,
-    text: "Perfect for busy professionals. The spaced repetition keeps everything fresh in my memory while I juggle work and learning.",
+    text: "Perfect for busy medical students. The microlearning approach fits my schedule perfectly - I can study between classes and during commute.",
     color: "bg-[var(--gk-green)]",
   },
   {
-    name: "Emma Parker",
-    role: "CS Student",
-    avatar: "EP",
+    name: "Kavya Reddy",
+    role: "Commerce Student, Rural College",
+    avatar: "KR",
     rating: 5,
-    text: "As a computer science student, these cards gave me a huge advantage. The progression from basics to advanced topics is perfect.",
+    text: "As a commerce student from a small town, these flashcards bridged the gap between English textbooks and my understanding. Game-changer for rural students!",
     color: "bg-[var(--gk-orange)]",
   },
 ];
@@ -39,9 +39,9 @@ export default function TestimonialsSection() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl font-bold text-slate-800 mb-4">What Learners Say</h2>
+          <h2 className="text-4xl font-bold text-slate-800 mb-4">Student Success Stories</h2>
           <p className="text-xl text-slate-600">
-            Join thousands of AI enthusiasts who've accelerated their learning journey.
+            Join thousands of students who've transformed their academic journey with our flashcards.
           </p>
         </motion.div>
         

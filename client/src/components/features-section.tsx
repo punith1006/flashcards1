@@ -2,21 +2,21 @@ import { motion } from "framer-motion";
 
 const features = [
   {
-    icon: "🧠",
-    title: "Spaced Repetition System",
-    description: "Cards are reviewed at scientifically optimized intervals, moving through different boxes based on your mastery level for maximum retention.",
+    icon: "🌍",
+    title: "Bilingual Learning Support",
+    description: "Regional language explanations on the back of each card, making complex academic terminology accessible to students from rural communities and government colleges.",
     color: "bg-[var(--gk-green)]",
   },
   {
-    icon: "📈",
-    title: "Progressive Difficulty",
-    description: "Content is structured from beginner to expert level, ensuring smooth learning progression and building solid foundations.",
+    icon: "⚡",
+    title: "Microlearning Approach",
+    description: "Bite-sized, digestible knowledge that fits busy student schedules. Learn anytime, anywhere with our pocket-sized library and dictionary.",
     color: "bg-[var(--gk-blue)]",
   },
   {
-    icon: "👥",
-    title: "Expert-Curated Content",
-    description: "Each card is carefully crafted by AI experts and educators, ensuring accuracy and relevance to current industry standards.",
+    icon: "🔄",
+    title: "Subscription Model",
+    description: "Continuous learning with regular updates featuring new terminologies, updated examples, and evolving industry standards to keep students ahead.",
     color: "bg-[var(--gk-orange)]",
   },
 ];
@@ -30,10 +30,10 @@ const leitnerBoxes = [
 ];
 
 const stats = [
-  { value: "98%", label: "Success Rate", color: "text-[var(--gk-blue)]" },
-  { value: "5x", label: "Faster Learning", color: "text-[var(--gk-green)]" },
-  { value: "87%", label: "Long-term Retention", color: "text-[var(--gk-orange)]" },
-  { value: "10k+", label: "Active Learners", color: "text-[var(--gk-brown)]" },
+  { value: "15+", label: "Academic Disciplines", color: "text-[var(--gk-blue)]" },
+  { value: "3x", label: "Faster Retention", color: "text-[var(--gk-green)]" },
+  { value: "Bilingual", label: "Language Support", color: "text-[var(--gk-orange)]" },
+  { value: "5k+", label: "Students Helped", color: "text-[var(--gk-brown)]" },
 ];
 
 export default function FeaturesSection() {
@@ -49,9 +49,9 @@ export default function FeaturesSection() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl font-bold text-slate-800 mb-4">The Leitner Method Advantage</h2>
+          <h2 className="text-4xl font-bold text-slate-800 mb-4">Why Microlearning Matters in Academia</h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            Our scientifically-proven spaced repetition system optimizes learning efficiency and long-term retention.
+            Revolutionary learning approach designed for modern students. Making education accessible, engaging, and practical for every student, including those in rural communities.
           </p>
         </motion.div>
         

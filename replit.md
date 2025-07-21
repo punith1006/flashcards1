@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a full-stack web application for "GK Cloud Solutions" - an AI flashcard learning platform that uses the proven Leitner method for spaced repetition learning. The application is built as a modern React SPA with an Express.js backend, featuring a landing page for an AI learning product called "Master AI - The Leitner Way."
+This is a full-stack web application for "GK Cloud Solutions" - a comprehensive flashcard learning platform designed for academic success across all disciplines. The application features microlearning solutions with bilingual support, targeting students from diverse backgrounds including rural communities and government colleges. Built as a modern React SPA with an Express.js backend, featuring a landing page for "Flashcards for Students."
 
 ## User Preferences
 
@@ -35,10 +35,10 @@ Preferred communication style: Simple, everyday language.
 
 ### Frontend Components
 1. **Landing Page Sections**:
-   - Hero section with animated elements and call-to-action
-   - Products showcase (Master AI, Intelligence, Programming cards)
-   - Features explanation with Leitner method visualization
-   - Testimonials from users
+   - Hero section with animated elements highlighting "Flashcards for Students"
+   - Academic product showcase (Engineering, Medical, Business, Liberal Arts collections)
+   - Features explanation with microlearning and bilingual support benefits
+   - Student testimonials from diverse academic backgrounds
    - Contact form with validation
    - Footer with company information
 

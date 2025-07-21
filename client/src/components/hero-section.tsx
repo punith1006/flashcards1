@@ -111,11 +111,11 @@ export default function HeroSection() {
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
               <h1 className="text-4xl lg:text-6xl font-bold text-slate-800 leading-tight">
-                Master <span className="text-[var(--gk-blue)]">AI</span><br/>
-                <span className="text-[var(--gk-green)]">The Leitner Way</span>
+                <span className="text-[var(--gk-blue)]">Flashcards</span> for<br/>
+                <span className="text-[var(--gk-green)]">Students</span>
               </h1>
               <p className="text-xl text-slate-600 max-w-2xl">
-                Revolutionary flashcard learning system designed to accelerate your artificial intelligence mastery through scientifically-proven spaced repetition techniques.
+                Revolutionary microlearning solution designed for academic success. Bite-sized, bilingual flashcards that make learning accessible, engaging, and practical for every student.
               </p>
             </motion.div>
             
@@ -192,16 +192,16 @@ export default function HeroSection() {
               transition={{ duration: 0.6, delay: 0.6 }}
             >
               <div className="text-center">
-                <div className="text-2xl font-bold text-[var(--gk-blue)]">500+</div>
-                <div className="text-sm text-slate-600">AI Concepts</div>
+                <div className="text-2xl font-bold text-[var(--gk-blue)]">1000+</div>
+                <div className="text-sm text-slate-600">Academic Concepts</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-[var(--gk-green)]">12</div>
-                <div className="text-sm text-slate-600">Subject Areas</div>
+                <div className="text-2xl font-bold text-[var(--gk-green)]">Bilingual</div>
+                <div className="text-sm text-slate-600">Regional Language Support</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-[var(--gk-orange)]">98%</div>
-                <div className="text-sm text-slate-600">Success Rate</div>
+                <div className="text-2xl font-bold text-[var(--gk-orange)]">15+</div>
+                <div className="text-sm text-slate-600">Academic Disciplines</div>
               </div>
             </motion.div>
           </div>
