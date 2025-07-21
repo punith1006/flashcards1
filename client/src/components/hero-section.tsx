@@ -1,31 +1,105 @@
-import { motion } from "framer-motion";
-import { Play, Download } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Play, Download, Sparkles } from "lucide-react";
 import { useScrollTo } from "@/hooks/use-scroll-to";
+import { useParallax } from "@/hooks/use-parallax";
+import { useRef } from "react";
 
 export default function HeroSection() {
   const scrollTo = useScrollTo();
+  const scrollY = useParallax();
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"]
+  });
+  
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 grid-pattern"></div>
-      <div className="absolute inset-0 gradient-overlay"></div>
+    <section ref={ref} id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <motion.div 
+        className="absolute inset-0 grid-pattern"
+        style={{ y, opacity }}
+      />
+      <motion.div 
+        className="absolute inset-0 gradient-overlay"
+        style={{ opacity }}
+      />
       
-      {/* Floating Elements */}
+      {/* Enhanced Floating Elements with Parallax */}
       <motion.div 
-        className="absolute top-20 left-10 w-16 h-16 bg-[var(--gk-green)]/20 rounded-full"
-        animate={{ y: [0, -20, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-20 left-10 w-16 h-16 bg-[var(--gk-green)]/20 rounded-full blur-sm"
+        animate={{ 
+          y: [0, -20, 0],
+          rotate: [0, 360],
+          scale: [1, 1.2, 1]
+        }}
+        transition={{ 
+          duration: 8, 
+          repeat: Infinity, 
+          ease: "easeInOut" 
+        }}
+        style={{ 
+          y: useTransform(scrollYProgress, [0, 1], [0, -100])
+        }}
       />
       <motion.div 
-        className="absolute top-40 right-20 w-12 h-12 bg-[var(--gk-orange)]/20 rounded-full"
-        animate={{ y: [0, -20, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+        className="absolute top-40 right-20 w-12 h-12 bg-[var(--gk-orange)]/30 rounded-full"
+        animate={{ 
+          y: [0, -20, 0],
+          x: [0, 10, 0],
+          opacity: [0.7, 1, 0.7]
+        }}
+        transition={{ 
+          duration: 6, 
+          repeat: Infinity, 
+          ease: "easeInOut", 
+          delay: 2 
+        }}
+        style={{ 
+          y: useTransform(scrollYProgress, [0, 1], [0, -150])
+        }}
       />
       <motion.div 
-        className="absolute bottom-40 left-1/4 w-8 h-8 bg-[var(--gk-blue)]/20 rounded-full"
-        animate={{ y: [0, -20, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 4 }}
+        className="absolute bottom-40 left-1/4 w-8 h-8 bg-[var(--gk-blue)]/25 rounded-full"
+        animate={{ 
+          y: [0, -20, 0],
+          rotate: [0, -180, 0]
+        }}
+        transition={{ 
+          duration: 10, 
+          repeat: Infinity, 
+          ease: "easeInOut", 
+          delay: 4 
+        }}
+        style={{ 
+          y: useTransform(scrollYProgress, [0, 1], [0, -80])
+        }}
       />
+      
+      {/* Additional floating sparkles */}
+      {[...Array(6)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-2 h-2 bg-white/40 rounded-full"
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+          }}
+          animate={{
+            opacity: [0, 1, 0],
+            scale: [0, 1, 0],
+            y: [0, -50, -100]
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            delay: i * 0.8,
+            ease: "easeOut"
+          }}
+        />
+      ))}
       
       <div className="container mx-auto px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -51,17 +125,64 @@ export default function HeroSection() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <button 
+              <motion.button 
                 onClick={() => scrollTo("products")}
-                className="px-8 py-4 bg-[var(--gk-blue)] text-white rounded-xl font-semibold hover:bg-blue-700 transform hover:scale-105 transition-all duration-300 shadow-lg flex items-center justify-center gap-2"
+                className="group relative px-8 py-4 bg-[var(--gk-blue)] text-white rounded-xl font-semibold shadow-lg overflow-hidden"
+                whileHover={{ 
+                  scale: 1.05,
+                  boxShadow: "0 20px 40px -12px rgba(59, 130, 246, 0.4)"
+                }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.3 }}
               >
-                <Play className="w-4 h-4" />
-                Explore Products
-              </button>
-              <button className="px-8 py-4 border border-[var(--gk-blue)] text-[var(--gk-blue)] rounded-xl font-semibold hover:bg-[var(--gk-blue)] hover:text-white transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2">
-                <Download className="w-4 h-4" />
-                Learn More
-              </button>
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                  initial={{ x: "-100%" }}
+                  whileHover={{ x: "100%" }}
+                  transition={{ duration: 0.6 }}
+                />
+                <div className="relative flex items-center justify-center gap-2">
+                  <motion.div
+                    animate={{ rotate: [0, 360] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                  >
+                    <Sparkles className="w-4 h-4" />
+                  </motion.div>
+                  Explore Products
+                  <motion.div
+                    className="group-hover:translate-x-1 transition-transform"
+                  >
+                    <Play className="w-4 h-4" />
+                  </motion.div>
+                </div>
+              </motion.button>
+              
+              <motion.button 
+                className="group relative px-8 py-4 border-2 border-[var(--gk-blue)] text-[var(--gk-blue)] rounded-xl font-semibold overflow-hidden"
+                whileHover={{ 
+                  scale: 1.05,
+                  backgroundColor: "var(--gk-blue)",
+                  color: "white"
+                }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.div
+                  className="absolute inset-0 bg-[var(--gk-blue)]"
+                  initial={{ scale: 0, opacity: 0 }}
+                  whileHover={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                  style={{ originX: 0.5, originY: 0.5 }}
+                />
+                <div className="relative flex items-center justify-center gap-2">
+                  <motion.div
+                    className="group-hover:animate-bounce"
+                  >
+                    <Download className="w-4 h-4" />
+                  </motion.div>
+                  Learn More
+                </div>
+              </motion.button>
             </motion.div>
             
             <motion.div 

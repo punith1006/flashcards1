@@ -1,5 +1,13 @@
 import { motion } from "framer-motion";
-import { ArrowRight, ShoppingCart } from "lucide-react";
+import { ArrowRight, ShoppingCart, Eye } from "lucide-react";
+import { useState } from "react";
+import ProductModal from "./product-modal";
+import aiCardAllImage from "@assets/ai card all_1753102070552.jpg";
+import beginnerFrontImage from "@assets/Beginner - Front advan_1753102070554.jpg";
+import cseAiCardImage from "@assets/cse ai card 16_1753102070555.jpg";
+import ecoSystemImage from "@assets/image (1)_1753102070556.jpg";
+import indexImage from "@assets/index_1753102070557.png";
+import tocImage from "@assets/TOC 1_1753102070558.jpg";
 
 const products = [
   {
@@ -16,6 +24,8 @@ const products = [
     levelBg: "bg-[var(--gk-green)]/10",
     levelColor: "text-[var(--gk-green)]",
     cardNumber: "AI",
+    image: cseAiCardImage,
+    imageAlt: "Master AI flashcards with box packaging",
   },
   {
     id: 2,
@@ -31,6 +41,8 @@ const products = [
     levelBg: "bg-slate-100",
     levelColor: "text-slate-600",
     cardNumber: "01",
+    image: beginnerFrontImage,
+    imageAlt: "Beginner Intelligence flashcards stack",
   },
   {
     id: 3,
@@ -46,10 +58,12 @@ const products = [
     levelBg: "bg-[var(--gk-orange)]/10",
     levelColor: "text-[var(--gk-orange)]",
     cardNumber: "02",
+    image: indexImage,
+    imageAlt: "Programming flashcards collection",
   },
   {
     id: 4,
-    title: "Advanced",
+    title: "Advanced Series",
     subtitle: "ML & Deep Learning",
     description: "Deep learning, neural networks, and cutting-edge AI research topics for advanced practitioners.",
     cardCount: "120 Cards",
@@ -61,6 +75,8 @@ const products = [
     levelBg: "bg-red-100",
     levelColor: "text-red-600",
     cardNumber: "03",
+    image: tocImage,
+    imageAlt: "Advanced AI flashcards with table of contents",
   },
   {
     id: 5,
@@ -76,10 +92,42 @@ const products = [
     levelBg: "bg-emerald-100",
     levelColor: "text-emerald-600",
     cardNumber: "∞",
+    image: aiCardAllImage,
+    imageAlt: "Complete AI flashcard collection",
+  },
+  {
+    id: 6,
+    title: "Eco-System Package",
+    subtitle: "Complete Learning Environment",
+    description: "Comprehensive learning ecosystem with flashcards, study guides, progress tracking, and community access.",
+    cardCount: "All Tools",
+    level: "Premium",
+    icon: "🌟",
+    bgGradient: "from-emerald-600 to-teal-600",
+    textColor: "text-emerald-600",
+    bgColor: "bg-emerald-600",
+    levelBg: "bg-blue-100",
+    levelColor: "text-blue-600",
+    cardNumber: "ECO",
+    image: ecoSystemImage,
+    imageAlt: "Eco-system package with learning materials",
   },
 ];
 
 export default function ProductsSection() {
+  const [selectedProduct, setSelectedProduct] = useState<typeof products[0] | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleProductClick = (product: typeof products[0]) => {
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedProduct(null);
+  };
+
   return (
     <section id="products" className="py-20 bg-white">
       <div className="container mx-auto px-6 lg:px-8">
@@ -100,41 +148,104 @@ export default function ProductsSection() {
           {products.map((product, index) => (
             <motion.div
               key={product.id}
-              className="card-hover bg-white rounded-2xl shadow-lg overflow-hidden border"
+              className="group bg-white rounded-2xl shadow-lg overflow-hidden border cursor-pointer"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
+              whileHover={{ 
+                y: -10,
+                scale: 1.02,
+                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+              }}
+              onClick={() => handleProductClick(product)}
             >
-              <div className={`relative h-64 bg-gradient-to-br ${product.bgGradient} p-8 flex items-center justify-center`}>
-                <div className="text-center text-white">
-                  <div className="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <span className="text-2xl">{product.icon}</span>
-                  </div>
-                  <h3 className="text-xl font-bold">{product.title}</h3>
-                  <p className="text-sm opacity-90 mt-1">{product.subtitle}</p>
-                </div>
-                <div className="absolute top-4 right-4 w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-                  <span className="text-xs font-bold">{product.cardNumber}</span>
-                </div>
+              {/* Image Section */}
+              <div className="relative h-64 overflow-hidden">
+                <motion.img
+                  src={product.image}
+                  alt={product.imageAlt}
+                  className="w-full h-full object-cover"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.3 }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                {/* Floating elements on hover */}
+                <motion.div 
+                  className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100"
+                  initial={{ x: -20, opacity: 0 }}
+                  whileHover={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <span className="text-lg">{product.icon}</span>
+                </motion.div>
+                
+                <motion.div 
+                  className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full w-10 h-10 flex items-center justify-center opacity-0 group-hover:opacity-100"
+                  initial={{ x: 20, opacity: 0 }}
+                  whileHover={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <span className="text-xs font-bold text-slate-700">{product.cardNumber}</span>
+                </motion.div>
+                
+                {/* Quick view button */}
+                <motion.button 
+                  className="absolute bottom-4 right-4 bg-white text-slate-800 rounded-full p-3 opacity-0 group-hover:opacity-100 hover:scale-110 transition-all duration-300"
+                  initial={{ y: 20, opacity: 0 }}
+                  whileHover={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.3, delay: 0.1 }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleProductClick(product);
+                  }}
+                >
+                  <Eye className="w-4 h-4" />
+                </motion.button>
               </div>
+              
+              {/* Content Section */}
               <div className="p-6">
-                <h4 className="font-semibold text-slate-800 mb-2">{product.title} {product.title !== "Complete Bundle" ? "Cards" : ""}</h4>
-                <p className="text-slate-600 text-sm mb-4">{product.description}</p>
+                <div className="flex items-start justify-between mb-3">
+                  <div>
+                    <h4 className="font-semibold text-slate-800 text-lg group-hover:text-[var(--gk-blue)] transition-colors">
+                      {product.title}
+                    </h4>
+                    <p className="text-sm text-slate-500">{product.subtitle}</p>
+                  </div>
+                </div>
+                
+                <p className="text-slate-600 text-sm mb-4 leading-relaxed">{product.description}</p>
+                
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className={`text-xs ${product.bgColor}/10 ${product.textColor} px-2 py-1 rounded-full`}>
+                    <span className={`text-xs bg-slate-100 ${product.textColor} px-3 py-1 rounded-full font-medium`}>
                       {product.cardCount}
                     </span>
-                    <span className={`text-xs ${product.levelBg} ${product.levelColor} px-2 py-1 rounded-full`}>
+                    <span className={`text-xs ${product.levelBg} ${product.levelColor} px-3 py-1 rounded-full font-medium`}>
                       {product.level}
                     </span>
                   </div>
-                  <button className={`${product.textColor} hover:opacity-80 transition-colors`}>
+                  
+                  <motion.button 
+                    className={`${product.textColor} hover:opacity-80 transition-colors p-2 rounded-full hover:bg-slate-100`}
+                    whileHover={{ x: 5 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
                     <ArrowRight className="w-4 h-4" />
-                  </button>
+                  </motion.button>
                 </div>
               </div>
+              
+              {/* Animated border effect */}
+              <motion.div 
+                className="absolute inset-0 border-2 border-transparent rounded-2xl opacity-0 group-hover:opacity-100"
+                style={{
+                  background: `linear-gradient(white, white) padding-box, ${product.bgGradient.replace('from-', 'linear-gradient(135deg, var(--').replace('to-', '), var(--').replace(']', '))').replace('[var(--', '').replace(')', '')} border-box`
+                }}
+                transition={{ duration: 0.3 }}
+              />
             </motion.div>
           ))}
           
@@ -183,6 +294,13 @@ export default function ProductsSection() {
           </button>
         </motion.div>
       </div>
+      
+      {/* Product Modal */}
+      <ProductModal 
+        product={selectedProduct}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </section>
   );
 }
